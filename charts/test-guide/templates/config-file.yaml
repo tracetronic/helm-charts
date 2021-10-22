@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "test-guide.fullname" . }}-config-file
+  labels:
+    {{- include "test-guide.labels" . | nindent 4 }}
+stringData:
+  autoConfig.prop: |
+    # Base settings
+    base.url={{ include "test-guide.baseUrl" . }}
+    base.uuid=1
+
+    # Admin profile
+    serveradmin.name={{ .Values.serveradmin.name }}
+    serveradmin.pass={{ .Values.serveradmin.pass }}
+    serveradmin.mail={{ .Values.serveradmin.mail }}
+
+    # Database connection
+    database.driver={{ .Values.db.driver }}
+    database.url={{ .Values.db.url }}
+    database.user={{ .Values.db.user }}
+    database.password={{ .Values.db.password }}
+
+    {{ if .Values.dbMonitoring -}}
+    # Monitoring database connection
+    database.monitoring.driver={{ .Values.dbMonitoring.driver }}
+    database.monitoring.url={{ .Values.dbMonitoring.url }}
+    database.monitoring.user={{ .Values.dbMonitoring.user }}
+    database.monitoring.password={{ .Values.dbMonitoring.password }}
+    {{- end }}
+
+    # Demo initialization
+    demo.init={{ .Values.initDemo }}
+
+    {{ if and (eq .Values.license.type "server") (.Values.license.key) -}}
+    # License information
+    license.code={{ .Values.license.key }}
+    {{- end }}

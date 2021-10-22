@@ -1,0 +1,12 @@
+{{- if and (eq .Values.license.type "file") (.Values.license.key) }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "test-guide.fullname" . }}-license-file
+  labels:
+    {{- include "test-guide.labels" . | nindent 4 }}
+type: Opaque
+data:
+  licenseV2_temp.ser: |
+    {{- .Values.license.key | b64enc | nindent 8 }}
+{{- end }}

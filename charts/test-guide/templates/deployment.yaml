@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "test-guide.fullname" . }}
+  labels:
+    {{- include "test-guide.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "test-guide.selectorLabels" . | nindent 6 }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "test-guide.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "test-guide.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ required "You need to set your own TEST-GUIDE container image!" .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion | default "latest" }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if and (eq .Values.license.type "file") (.Values.license.key) }}
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - "sh"
+                  - "-c"
+                  - >
+                    cp /app/TTS-TM/licenseV2_temp.ser /app/TTS-TM/licenseV2.ser;
+          {{- end }}
+          ports:
+            - name: frontend
+              containerPort: {{ .Values.service.targetPort }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /api/health/live
+              port: {{ .Values.service.targetPort }}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: /api/health/ready
+              port: {{ .Values.service.targetPort }}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 5
+          env:
+            {{- toYaml .Values.env | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: test-guide-data
+              mountPath: /app/TTS-TM
+            - name: test-guide-config-file
+              mountPath: /app/TTS-TM/autoConfig.prop
+              subPath: autoConfig.prop
+              readOnly: true
+            {{- if and (eq .Values.license.type "file") (.Values.license.key) }}
+            - name: test-guide-license-file
+              mountPath: /app/TTS-TM/licenseV2_temp.ser
+              subPath: licenseV2_temp.ser
+              readOnly: true
+            {{- end }}
+      volumes:
+        - name: test-guide-data
+        {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "test-guide.fullname" . }}-data
+        {{- else }}
+          emptyDir: {}
+        {{- end }}
+        - name: test-guide-config-file
+          secret:
+            secretName:  {{ include "test-guide.fullname" . }}-config-file
+        {{- if and (eq .Values.license.type "file") (.Values.license.key) }}
+        - name: test-guide-license-file
+          secret:
+            secretName: {{ include "test-guide.fullname" . }}-license-file
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
