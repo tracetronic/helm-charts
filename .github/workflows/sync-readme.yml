@@ -21,7 +21,7 @@ jobs:
 
       - name: Copy images
         run: |
-          cp .github/img/ ${{ runner.temp }}/.github/img/
+          cp -fr .github/img/ ${{ runner.temp }}/.github/img/
 
       - name: Checkout GitHub Pages branch
         uses: actions/checkout@v2
@@ -31,7 +31,8 @@ jobs:
       - name: Commit and push README
         run: |
           cp -f ${{ runner.temp }}/README.md .
-          cp ${{ runner.temp }}/.github/img/ .github/img/
+          rm -fr .github/img/
+          cp -fr ${{ runner.temp }}/.github/img/ .github/img/
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add README.md
