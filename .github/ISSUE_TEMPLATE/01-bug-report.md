@@ -5,7 +5,7 @@ labels: bug
 ---
 
 <!--
-Never report security issues on GitHub or other public channels (Gitter/Twitter/etc.). PLease use our [TraceTronic Support Center](https://support.tracetronic.com).
+Never report security issues on GitHub or other public channels (Gitter/Twitter/etc.). Please use our [TraceTronic Support Center](https://support.tracetronic.com).
 For reporting issues containing NDA relevant information please also use our [TraceTronic Support Center](https://support.tracetronic.com).
 -->
 
