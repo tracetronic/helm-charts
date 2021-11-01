@@ -21,6 +21,14 @@ $ helm search repo tracetronic
 $ helm install [RELEASE_NAME] tracetronic/[CHART_NAME]
 ```
 
+## Customization
+
+**TraceTronic Helm Charts** need customer specific adaptions (e.g. license information, ...) which could be passed via value references. Please have a look at the distinct product related charts for further information linked as follows:
+
+| Chart | Additional information |
+| ----- | ---------------------- |
+| TEST-GUIDE | see [Readme.md](https://github.com/tracetronic/helm-charts/blob/unique_uuid/charts/test-guide/README.md#configuration)|
+
 ## Contribution
 
 We encourage you to contribute to **TraceTronic Helm Charts** using the [issue tracker](https://github.com/tracetronic/helm-charts/issues/new/choose) to suggest feature requests and report bugs.
