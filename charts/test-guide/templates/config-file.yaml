@@ -8,7 +8,7 @@ stringData:
   autoConfig.prop: |
     # Base settings
     base.url={{ include "test-guide.baseUrl" . }}
-    base.uuid=1
+    base.uuid={{ .Values.baseSettings.uuid }}
 
     # Admin profile
     serveradmin.name={{ .Values.serveradmin.name }}
