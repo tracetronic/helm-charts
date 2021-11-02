@@ -31,11 +31,11 @@ stringData:
     {{- end }}
 
     {{ if .Values.dbArtifact -}}
-    # Monitoring database connection
-    database.monitoring.driver={{ .Values.dbArtifact.driver }}
-    database.monitoring.url={{ .Values.dbArtifact.url }}
-    database.monitoring.user={{ .Values.dbArtifact.user }}
-    database.monitoring.password={{ .Values.dbArtifact.password }}
+    # Artifact database connection
+    database.artifact.driver={{ .Values.dbArtifact.driver }}
+    database.artifact.url={{ .Values.dbArtifact.url }}
+    database.artifact.user={{ .Values.dbArtifact.user }}
+    database.artifact.password={{ .Values.dbArtifact.password }}
     {{- end }}
 
     # Demo initialization
