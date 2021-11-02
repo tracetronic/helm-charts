@@ -17,6 +17,7 @@ serveradmin:
   name: ServerAdmin
   pass: TG-demo1
   mail: admin@localhost
+  company: local
 
 # Configure main database connection
 db:
@@ -29,6 +30,13 @@ db:
 dbMonitoring:
   driver: H2
   url: jdbc:h2:/app/TTS-TM/TT-DB-Monitoring
+  user: ATX
+  password: ATX
+
+# Configure artifact database connection
+dbArtifact:
+  driver: H2
+  url: jdbc:h2:/app/TTS-TM/TT-Artifact
   user: ATX
   password: ATX
 
@@ -45,6 +53,15 @@ license:
 baseSettings:
   # Default needs to be set to individual value
   uuid: 1
+
+# Configure mail settings
+mail:
+  host: mail.localhost
+  port: 25
+  useSsl: false
+  useTls: false
+  smtpUsername: Example
+  smtpUserPassword: Example
 
 serviceAccount:
   # Specifies whether a service account should be created
