@@ -13,13 +13,16 @@ This repository hosts the official **[TraceTronic](https://www.tracetronic.de/) 
 [Helm](https://helm.sh) must be installed and initialized to use the charts.
 Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 
-Once Helm is set up properly, add the repository as follows:
+Once Helm is set up properly, you could access provided charts as follows:
 
 ```bash
 $ helm repo add tracetronic https://tracetronic.github.io/helm-charts
 $ helm search repo tracetronic
 $ helm install [RELEASE_NAME] tracetronic/[CHART_NAME]
 ```
+
+The provided charts are specific for each TraceTronic product and its values often need an individual configuration. Further information could be found within the respective chart area:
+- [TEST-GUIDE](https://github.com/tracetronic/helm-charts/blob/main/charts/test-guide/README.md)
 
 ## Contribution
 
