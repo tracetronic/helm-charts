@@ -12,31 +12,41 @@ image:
 
 imagePullSecrets: []
 
+# Configure Base settings
+baseSettings:
+  # Default needs to be set to individual value
+  uuid: 1
+  # parent folder of TEST-GUIDE workspace
+  parentDir: /home/tg_user/
+
 # Configure admin credentials
 serveradmin:
   name: ServerAdmin
   pass: TG-demo1
-  mail: admin@localhost
+  mail: admin@localhost.loc
   company: local
 
 # Configure main database connection
 db:
   driver: H2
-  url: jdbc:h2:/app/TTS-TM/TT-DB
+  # If the database is stored apart from the TEST-GUIDE workspace database persistence must be handled separately.
+  url: jdbc:h2:/home/tg_user/TTS-TM/TT-DB
   user: ATX
   password: ATX
 
 # Configure monitoring database connection
 dbMonitoring:
   driver: H2
-  url: jdbc:h2:/app/TTS-TM/TT-DB-Monitoring
+  # If the database is stored apart from the TEST-GUIDE workspace database persistence must be handled separately.
+  url: jdbc:h2:/home/tg_user/TTS-TM/TT-DB-Monitoring
   user: ATX
   password: ATX
 
 # Configure artifact database connection
 dbArtifact:
   driver: H2
-  url: jdbc:h2:/app/TTS-TM/TT-Artifact
+  # If the database is stored apart from the TEST-GUIDE workspace database persistence must be handled separately.
+  url: jdbc:h2:/home/tg_user/TTS-TM/TT-Artifact
   user: ATX
   password: ATX
 
@@ -48,11 +58,6 @@ license:
   # Decide whether a local license file or a global license server is used for retrieving license information; possible options: "file" or "server"
   type: file
   key: ""
-
-# Configure Base settings
-baseSettings:
-  # Default needs to be set to individual value
-  uuid: 1
 
 # Configure mail settings
 mail:
