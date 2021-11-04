@@ -14,6 +14,7 @@ stringData:
     serveradmin.name={{ .Values.serveradmin.name }}
     serveradmin.pass={{ .Values.serveradmin.pass }}
     serveradmin.mail={{ .Values.serveradmin.mail }}
+    serveradmin.company={{ .Values.serveradmin.company }}
 
     # Database connection
     database.driver={{ .Values.db.driver }}
@@ -29,10 +30,28 @@ stringData:
     database.monitoring.password={{ .Values.dbMonitoring.password }}
     {{- end }}
 
+    {{ if .Values.dbArtifact -}}
+    # Artifact database connection
+    database.artifact.driver={{ .Values.dbArtifact.driver }}
+    database.artifact.url={{ .Values.dbArtifact.url }}
+    database.artifact.user={{ .Values.dbArtifact.user }}
+    database.artifact.password={{ .Values.dbArtifact.password }}
+    {{- end }}
+
     # Demo initialization
     demo.init={{ .Values.initDemo }}
 
     {{ if and (eq .Values.license.type "server") (.Values.license.key) -}}
     # License information
     license.code={{ .Values.license.key }}
+    {{- end }}
+
+    {{ if .Values.mail -}}
+    # Configure mail settings
+    mail.host={{ .Values.mail.host }}
+    mail.port={{ .Values.mail.port }}
+    mail.useSsl={{ .Values.mail.useSsl }}
+    mail.useTls={{ .Values.mail.useTls }}
+    mail.smtpUsername={{ .Values.mail.smtpUsername }}
+    mail.smtpUserPassword={{ .Values.mail.UserPassword }}
     {{- end }}
