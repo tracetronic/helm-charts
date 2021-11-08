@@ -31,3 +31,15 @@ To see all configurable options with detailed comments, visit the chart's [value
 # Show chart values
 $ helm show values tracetronic/test-guide
 ```
+
+## Migration
+
+### To 0.4.0
+
+This version supports a configurable TEST-GUIDE application directory which must match the used image.
+
+#### values.yaml
+
+| Name | Description | Value |
+| ---- | ----------- | ----- |
+| `baseSettings.parentDir` | TEST-GUIDE base directory | default: `/user/tg_home` |
