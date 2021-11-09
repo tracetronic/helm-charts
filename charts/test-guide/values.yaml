@@ -17,7 +17,7 @@ baseSettings:
   # Default needs to be set to individual value
   uuid: 1
   # parent folder of TEST-GUIDE workspace
-  parentDir: /home/tg_user/
+  tgWorkspace: /home/tg_user/
 
 # Configure admin credentials
 serveradmin:

@@ -41,7 +41,7 @@ spec:
                   - "sh"
                   - "-c"
                   - >
-                    cp {{ .Values.baseSettings.parentDir }}/TTS-TM/licenseV2_temp.ser {{ .Values.baseSettings.parentDir }}/TTS-TM/licenseV2.ser;
+                    cp {{ .Values.baseSettings.tgWorkspace }}/TTS-TM/licenseV2_temp.ser {{ .Values.baseSettings.tgWorkspace }}/TTS-TM/licenseV2.ser;
           {{- end }}
           ports:
             - name: frontend
@@ -69,14 +69,14 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - name: test-guide-data
-              mountPath: {{ .Values.baseSettings.parentDir }}TTS-TM
+              mountPath: {{ .Values.baseSettings.tgWorkspace }}TTS-TM
             - name: test-guide-config-file
-              mountPath: {{ .Values.baseSettings.parentDir }}TTS-TM/autoConfig.prop
+              mountPath: {{ .Values.baseSettings.tgWorkspace }}TTS-TM/autoConfig.prop
               subPath: autoConfig.prop
               readOnly: true
             {{- if and (eq .Values.license.type "file") (.Values.license.key) }}
             - name: test-guide-license-file
-              mountPath: {{ .Values.baseSettings.parentDir }}TTS-TM/licenseV2_temp.ser
+              mountPath: {{ .Values.baseSettings.tgWorkspace }}TTS-TM/licenseV2_temp.ser
               subPath: licenseV2_temp.ser
               readOnly: true
             {{- end }}

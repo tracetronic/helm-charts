@@ -42,4 +42,4 @@ This version supports a configurable TEST-GUIDE application directory which must
 
 | Name | Description | Value |
 | ---- | ----------- | ----- |
-| `baseSettings.parentDir` | TEST-GUIDE base directory | default: `/home/tg_user/` |
+| `baseSettings.tgWorkspace` | TEST-GUIDE base directory | default: `/home/tg_user/` |
