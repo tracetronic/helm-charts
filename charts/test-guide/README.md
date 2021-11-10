@@ -40,6 +40,9 @@ This version supports a configurable TEST-GUIDE application directory which must
 
 #### values.yaml
 
-| Name | Description | Value |
-| ---- | ----------- | ----- |
-| `baseSettings.tgWorkspace` | TEST-GUIDE base directory | default: `/home/tg_user/` |
+| Change | Name | Description | Default Value | Value to reuse existing clusters |
+| ------ | ---- | ----------- | ------------- | -------------------------------- |
+| Add value | `baseSettings.tgWorkspace` | TEST-GUIDE base directory | `/home/tg_user/` | `/app/`|
+| Change default value | `db.url` | Reference to the main database of TEST-GUIDE | `/home/tg_user/TTS-TM/TT-DB` | `/app/TTS-TM/TT-DB`|
+| Change default value | `dbMonitoring.url` | Reference to the monitoring database of TEST-GUIDE | `/home/tg_user/TTS-TM/TT-Monitoring` | `/app/TTS-TM/TT-Monitoring`|
+| Change default value | `dbArtifact.url` | Reference to the artifact database of TEST-GUIDE | `/home/tg_user/TTS-TM/TT-Artifact` | `/app/TTS-TM/TT-Artifact`|

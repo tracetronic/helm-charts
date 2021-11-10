@@ -41,7 +41,7 @@ spec:
                   - "sh"
                   - "-c"
                   - >
-                    cp {{ .Values.baseSettings.tgWorkspace }}/TTS-TM/licenseV2_temp.ser {{ .Values.baseSettings.tgWorkspace }}/TTS-TM/licenseV2.ser;
+                    cp {{ .Values.baseSettings.tgWorkspace }}TTS-TM/licenseV2_temp.ser {{ .Values.baseSettings.tgWorkspace }}TTS-TM/licenseV2.ser;
           {{- end }}
           ports:
             - name: frontend
