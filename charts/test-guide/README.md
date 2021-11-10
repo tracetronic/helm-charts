@@ -31,3 +31,18 @@ To see all configurable options with detailed comments, visit the chart's [value
 # Show chart values
 $ helm show values tracetronic/test-guide
 ```
+
+## Migration
+
+### To 0.4.0
+
+This version supports a configurable TEST-GUIDE application directory which must match the used image.
+
+#### values.yaml
+
+| Change | Name | Description | Default Value | Value to reuse existing clusters |
+| ------ | ---- | ----------- | ------------- | -------------------------------- |
+| Add value | `baseSettings.tgWorkspace` | support for TEST-GUIDE workspace path configuration | `/home/tg_user/` | `/app/`|
+| Change default value | `db.url` | adjust path to match the official TEST-GUIDE image | `/home/tg_user/TTS-TM/TT-DB` | `/app/TTS-TM/TT-DB`|
+| Change default value | `dbMonitoring.url` | adjust path to match the official TEST-GUIDE image | `/home/tg_user/TTS-TM/TT-Monitoring` | `/app/TTS-TM/TT-Monitoring`|
+| Change default value | `dbArtifact.url` | adjust path to match the official TEST-GUIDE image | `/home/tg_user/TTS-TM/TT-Artifact` | `/app/TTS-TM/TT-Artifact`|
