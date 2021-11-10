@@ -2,6 +2,23 @@ apiVersion: v1
 entries:
   test-guide:
   - apiVersion: v2
+    created: "2021-11-10T13:29:41.393510329Z"
+    description: TEST-GUIDE is a database application for the overview, analysis and
+      follow-up processing of test procedures, which has been specially developed
+      for use in the automotive sector.
+    digest: cba24068f3bb8ae94785a06092e2f67237ac263cbbc39c8bcd0192b10cc02bb3
+    home: https://www.test-guide.de
+    icon: https://www.tracetronic.de/img/Logo_TEST-GUIDE_400x200.png
+    maintainers:
+    - email: support@tracetronic.com
+      name: TraceTronic
+      url: https://www.tracetronic.de
+    name: test-guide
+    type: application
+    urls:
+    - https://github.com/tracetronic/helm-charts/releases/download/test-guide-0.4.0/test-guide-0.4.0.tgz
+    version: 0.4.0
+  - apiVersion: v2
     created: "2021-11-04T07:50:06.721206282Z"
     description: TEST-GUIDE is a database application for the overview, analysis and
       follow-up processing of test procedures, which has been specially developed
@@ -52,4 +69,4 @@ entries:
     urls:
     - https://github.com/tracetronic/helm-charts/releases/download/test-guide-0.1.0/test-guide-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-04T07:50:06.721353483Z"
+generated: "2021-11-10T13:29:41.39352663Z"
