@@ -4,7 +4,7 @@
 
 This repository hosts the official **[TraceTronic](https://www.tracetronic.de/) Helm Charts** for deploying **TraceTronic** products to [Kubernetes](https://kubernetes.io/).
 
-<img src=".github/img/automotive_devops_platform_logo.png" align="left" alt="Automotive DevOps Platform">
+<img src="https://github.com/tracetronic/helm-charts/blob/main/.github/img/automotive_devops_platform_logo.png?raw=true" align="left" alt="Automotive DevOps Platform">
 
 **TraceTronic Helm Charts** project is part of the [Automotive DevOps Platform](https://www.tracetronic.com/products/automotive-devops-platform/) by TraceTronic. With the **Automotive DevOps Platform**, we go from the big picture to the details and unite all phases of vehicle software testing – from planning the test scopes to summarizing the test results. At the same time, continuous monitoring across all test phases always provides an overview of all activities – even with several thousand test executions per day and in different test environments.
 
@@ -36,4 +36,4 @@ If you have any questions, please contact us at [support@tracetronic.com](mailto
 
 ## License
 
-This project is licensed under the terms of the [Apache License, Version 2.0](LICENSE).
+This project is licensed under the terms of the [Apache License, Version 2.0](https://github.com/tracetronic/helm-charts/blob/main/LICENSE).
