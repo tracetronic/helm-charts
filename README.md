@@ -1,6 +1,7 @@
 # TraceTronic Helm Charts
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub Release](https://img.shields.io/github/release/tracetronic/helm-charts.svg?label=version)](https://github.com/tracetronic/helm-charts/releases)
+[![CI](https://github.com/tracetronic/helm-charts/actions/workflows/ci.yml/badge.svg)](https://github.com/tracetronic/helm-charts/blob/main/.github/workflows/ci.yml)
 
 This repository hosts the official **[TraceTronic](https://www.tracetronic.de/) Helm Charts** for deploying **TraceTronic** products to [Kubernetes](https://kubernetes.io/).
 
