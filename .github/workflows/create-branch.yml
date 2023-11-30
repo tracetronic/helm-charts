@@ -1,0 +1,10 @@
+name: Auto Create Branch
+
+on:
+  issues:
+    types:
+      - "assigned"
+
+jobs:
+  create-branch:
+    uses: tracetronic/.github/.github/workflows/create-branch.yml@main
