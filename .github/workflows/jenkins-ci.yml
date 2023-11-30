@@ -1,0 +1,31 @@
+name: Jenkins Internal
+run-name: E2E Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      status:
+        type: string
+        default: "FAILURE"
+      message:
+        type: string
+        default: "Jenkins pipeline failed"
+      tgVersion:
+        type: string
+        default: ''
+
+jobs:
+  jenkins-e2e-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pipeline Status
+        run: |
+            echo "### Running E2E for version: ${{ github.event.inputs.tgVersion }}" >> $GITHUB_STEP_SUMMARY
+            echo "| Status   | Message  |" >> $GITHUB_STEP_SUMMARY
+            echo "| -------- | -------- |" >> $GITHUB_STEP_SUMMARY
+            if [ "${{ github.event.inputs.status }}" != "SUCCESS" ]; then
+                echo "| :x: | ${{ github.event.inputs.message }} |"  >> $GITHUB_STEP_SUMMARY
+                exit 1
+            fi
+            echo "| :white_check_mark: | ${{ github.event.inputs.message }} |"  >> $GITHUB_STEP_SUMMARY
+            exit 0
