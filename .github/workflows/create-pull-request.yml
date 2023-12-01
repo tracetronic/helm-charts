@@ -1,0 +1,9 @@
+name: Auto Create Pull Request
+
+on:
+  push:
+    branches-ignore: ["main"]
+
+jobs:
+  create-pr:
+    uses: tracetronic/.github/.github/workflows/create-pull-request.yml@main
