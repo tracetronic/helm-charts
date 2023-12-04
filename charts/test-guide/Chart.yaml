@@ -1,11 +1,11 @@
 apiVersion: v2
-version: 0.4.0
+version: 0.5.0
 type: application
 name: test-guide
-description: TEST-GUIDE is a database application for the overview, analysis and follow-up processing of test procedures, which has been specially developed for use in the automotive sector.
+description: test.guide is a database application for the overview, analysis and follow-up processing of test procedures, which has been specially developed for use in the automotive sector.
 home: https://www.test-guide.de
 maintainers:
   - email: support@tracetronic.com
-    name: TraceTronic
-    url: https://www.tracetronic.de
+    name: tracetronic GmbH
+    url: https://www.tracetronic.com
 icon: https://www.tracetronic.de/img/Logo_TEST-GUIDE_400x200.png
