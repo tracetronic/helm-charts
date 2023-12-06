@@ -31,7 +31,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ required "You need to set your own TEST-GUIDE container image!" .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion | default "latest" }}"
+          image: "{{ required "You need to set your own test.guide container image!" .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion | default "latest" }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if and (eq .Values.license.type "file") (.Values.license.key) }}
           lifecycle:
