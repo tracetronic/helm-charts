@@ -26,7 +26,22 @@ serveradmin:
   mail: admin@localhost.loc
   company: local
 
+secrets:
+  dbCredentials:
+    name: db-credentials
+    userKey: user
+    passwordKey: password
+  dbMonitoringCredentials:
+    name: dbMonitoring-credentials
+    userKey: user
+    passwordKey: password
+  dbArtifactCredentials:
+    name: dbArtifact-credentials
+    userKey: user
+    passwordKey: password
+
 # Configure main database connection
+useSecretsForCredentials: false
 db:
   driver: H2
   # If the database is stored apart from the test.guide workspace database persistence must be handled separately.
