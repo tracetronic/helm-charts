@@ -19,23 +19,23 @@ stringData:
     # Database connection
     database.driver={{ .Values.db.driver }}
     database.url={{ .Values.db.url }}
-    database.user={{ if .Values.useSecretsForCredentials }}{{ .Values.secrets.dbCredentials.name }}{{ else }}{{ .Values.db.user }}{{ end }}
-    database.password={{ if .Values.useSecretsForCredentials }}{{ .Values.secrets.dbCredentials.passwordKey }}{{ else }}{{ .Values.db.password }}{{ end }}
+    database.user: ${DB_USER}
+    database.password: ${DB_PASSWORD}
 
     {{ if .Values.dbMonitoring -}}
     # Monitoring database connection
     database.monitoring.driver={{ .Values.dbMonitoring.driver }}
     database.monitoring.url={{ .Values.dbMonitoring.url }}
-    database.monitoring.user={{ if .Values.useSecretsForCredentials }}{{ .Values.secrets.dbMonitoringCredentials.name }}{{ else }}{{ .Values.dbMonitoring.user }}{{ end }}
-    database.monitoring.password={{ if .Values.useSecretsForCredentials }}{{ .Values.secrets.dbMonitoringCredentials.passwordKey }}{{ else }}{{ .Values.dbMonitoring.password }}{{ end }}
+    database.monitoring.user=${DB_MONITORING_USER}
+    database.monitoring.password=${DB_MONITORING_PASSWORD}
     {{- end }}
 
     {{ if .Values.dbArtifact -}}
     # Artifact database connection
     database.artifact.driver={{ .Values.dbArtifact.driver }}
     database.artifact.url={{ .Values.dbArtifact.url }}
-    database.artifact.user={{ if .Values.useSecretsForCredentials }}{{ .Values.secrets.dbArtifactCredentials.name }}{{ else }}{{ .Values.dbArtifact.user }}{{ end }}
-    database.artifact.password={{ if .Values.useSecretsForCredentials }}{{ .Values.secrets.dbArtifactCredentials.passwordKey }}{{ else }}{{ .Values.dbArtifact.password }}{{ end }}
+    database.artifact.user=${DB_ARTIFACT_USER}
+    database.artifact.password=${DB_ARTIFACT_PASSWORD}
     {{- end }}
 
     # Demo initialization
