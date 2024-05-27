@@ -46,7 +46,7 @@ stringData:
       {{- $dbUser := index $secret.data .Values.secrets.dbMonitoringCredentials.userKey }}
       {{- $dbUser }}
     {{- else -}}
-      {{ .Values.db.user }}
+      {{ .Values.dbMonitoring.user }}
     {{- end }}
     database.monitoring.password=
     {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbMonitoringCredentials.secretName) -}}
@@ -54,7 +54,7 @@ stringData:
       {{- $dbPassword := index $secret.data .Values.secrets.dbMonitoringCredentials.passwordKey }}
       {{- $dbPassword }}
     {{- else -}}
-      {{ .Values.db.password }}
+      {{ .Values.dbMonitoring.password }}
     {{- end }}
     {{- end }}
 
@@ -68,7 +68,7 @@ stringData:
       {{- $dbUser := index $secret.data .Values.secrets.dbArtifactCredentials.userKey }}
       {{- $dbUser }}
     {{- else -}}
-      {{ .Values.db.user }}
+      {{ .Values.dbArtifact.user }}
     {{- end }}
     database.artifact.password=
     {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbArtifactCredentials.secretName) -}}
@@ -76,7 +76,7 @@ stringData:
       {{- $dbPassword := index $secret.data .Values.secrets.dbArtifactCredentials.passwordKey }}
       {{- $dbPassword }}
     {{- else -}}
-      {{ .Values.db.password }}
+      {{ .Values.dbArtifact.password }}
     {{- end }}
     {{- end }}
 
