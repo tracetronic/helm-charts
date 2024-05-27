@@ -28,32 +28,33 @@ serveradmin:
 
 secrets:
   dbCredentials:
-    name: db-credentials
+    secretName: db-credentials
     userKey: user
     passwordKey: password
   dbMonitoringCredentials:
-    name: dbMonitoring-credentials
+    secretName: dbMonitoring-credentials
     userKey: user
     passwordKey: password
   dbArtifactCredentials:
-    name: dbArtifact-credentials
+    secretName: dbArtifact-credentials
     userKey: user
     passwordKey: password
 
 # Configure main database connection
-useSecretsForCredentials: false
 db:
   driver: H2
   # If the database is stored apart from the test.guide workspace database persistence must be handled separately.
   url: jdbc:h2:/home/tg_user/TTS-TM/TT-DB
+  # Default plain text values if no configured secret is present
   user: ATX
   password: ATX
 
-# Configure monitoring database connection
+# Default plain text values if no configured secret is present
 dbMonitoring:
   driver: H2
   # If the database is stored apart from the test.guide workspace database persistence must be handled separately.
   url: jdbc:h2:/home/tg_user/TTS-TM/TT-DB-Monitoring
+  # Default plain text values if no configured secret is present
   user: ATX
   password: ATX
 
@@ -62,6 +63,7 @@ dbArtifact:
   driver: H2
   # If the database is stored apart from the test.guide workspace database persistence must be handled separately.
   url: jdbc:h2:/home/tg_user/TTS-TM/TT-Artifact
+  # Default values if no configured secret is present
   user: ATX
   password: ATX
 

@@ -20,7 +20,7 @@ stringData:
     database.driver={{ .Values.db.driver }}
     database.url={{ .Values.db.url }}
     database.user=
-    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbCredentials.name) -}}
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbCredentials.secretName) -}}
     {{- if $secret.data }}
       {{- $dbUser := index $secret.data .Values.secrets.dbCredentials.userKey }}
       {{- $dbUser }}
@@ -28,8 +28,7 @@ stringData:
       {{ .Values.db.user }}
     {{- end }}
     database.password=
-    {{- $secretName := .Values.secrets.dbCredentials.name -}}
-    {{- $secret := (lookup "v1" "Secret" .Release.Namespace $secretName) -}}
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbCredentials.secretName) -}}
     {{- if $secret.data }}
       {{- $dbPassword := index $secret.data .Values.secrets.dbCredentials.passwordKey }}
       {{- $dbPassword }}
@@ -42,7 +41,7 @@ stringData:
     database.monitoring.driver={{ .Values.dbMonitoring.driver }}
     database.monitoring.url={{ .Values.dbMonitoring.url }}
     database.monitoring.user=
-    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbMonitoringCredentials.name) -}}
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbMonitoringCredentials.secretName) -}}
     {{- if $secret.data }}
       {{- $dbUser := index $secret.data .Values.secrets.dbMonitoringCredentials.userKey }}
       {{- $dbUser }}
@@ -50,8 +49,7 @@ stringData:
       {{ .Values.db.user }}
     {{- end }}
     database.monitoring.password=
-    {{- $secretName := .Values.secrets.dbMonitoringCredentials.name -}}
-    {{- $secret := (lookup "v1" "Secret" .Release.Namespace $secretName) -}}
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbMonitoringCredentials.secretName) -}}
     {{- if $secret.data }}
       {{- $dbPassword := index $secret.data .Values.secrets.dbMonitoringCredentials.passwordKey }}
       {{- $dbPassword }}
@@ -65,16 +63,15 @@ stringData:
     database.artifact.driver={{ .Values.dbArtifact.driver }}
     database.artifact.url={{ .Values.dbArtifact.url }}
     database.artifact.user=
-    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbMonitoringCredentials.name) -}}
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbArtifactCredentials.secretName) -}}
     {{- if $secret.data }}
-      {{- $dbUser := index $secret.data .Values.secrets.dbMonitoringCredentials.userKey }}
+      {{- $dbUser := index $secret.data .Values.secrets.dbArtifactCredentials.userKey }}
       {{- $dbUser }}
     {{- else -}}
       {{ .Values.db.user }}
     {{- end }}
     database.artifact.password=
-    {{- $secretName := .Values.secrets.dbArtifactCredentials.name -}}
-    {{- $secret := (lookup "v1" "Secret" .Release.Namespace $secretName) -}}
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbArtifactCredentials.secretName) -}}
     {{- if $secret.data }}
       {{- $dbPassword := index $secret.data .Values.secrets.dbArtifactCredentials.passwordKey }}
       {{- $dbPassword }}
