@@ -19,23 +19,68 @@ stringData:
     # Database connection
     database.driver={{ .Values.db.driver }}
     database.url={{ .Values.db.url }}
-    database.user: ${DB_USER}
-    database.password: ${DB_PASSWORD}
+    database.user=
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbCredentials.name) -}}
+    {{- if $secret.data }}
+      {{- $dbUser := index $secret.data .Values.secrets.dbCredentials.userKey }}
+      {{- $dbUser }}
+    {{- else -}}
+      {{ .Values.db.user }}
+    {{- end }}
+    database.password=
+    {{- $secretName := .Values.secrets.dbCredentials.name -}}
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace $secretName) -}}
+    {{- if $secret.data }}
+      {{- $dbPassword := index $secret.data .Values.secrets.dbCredentials.passwordKey }}
+      {{- $dbPassword }}
+    {{- else -}}
+      {{ .Values.db.password }}
+    {{- end }}
 
     {{ if .Values.dbMonitoring -}}
     # Monitoring database connection
     database.monitoring.driver={{ .Values.dbMonitoring.driver }}
     database.monitoring.url={{ .Values.dbMonitoring.url }}
-    database.monitoring.user=${DB_MONITORING_USER}
-    database.monitoring.password=${DB_MONITORING_PASSWORD}
+    database.monitoring.user=
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbMonitoringCredentials.name) -}}
+    {{- if $secret.data }}
+      {{- $dbUser := index $secret.data .Values.secrets.dbMonitoringCredentials.userKey }}
+      {{- $dbUser }}
+    {{- else -}}
+      {{ .Values.db.user }}
+    {{- end }}
+    database.monitoring.password=
+    {{- $secretName := .Values.secrets.dbMonitoringCredentials.name -}}
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace $secretName) -}}
+    {{- if $secret.data }}
+      {{- $dbPassword := index $secret.data .Values.secrets.dbMonitoringCredentials.passwordKey }}
+      {{- $dbPassword }}
+    {{- else -}}
+      {{ .Values.db.password }}
+    {{- end }}
     {{- end }}
 
     {{ if .Values.dbArtifact -}}
     # Artifact database connection
     database.artifact.driver={{ .Values.dbArtifact.driver }}
     database.artifact.url={{ .Values.dbArtifact.url }}
-    database.artifact.user=${DB_ARTIFACT_USER}
-    database.artifact.password=${DB_ARTIFACT_PASSWORD}
+    database.artifact.user=
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbMonitoringCredentials.name) -}}
+    {{- if $secret.data }}
+      {{- $dbUser := index $secret.data .Values.secrets.dbMonitoringCredentials.userKey }}
+      {{- $dbUser }}
+    {{- else -}}
+      {{ .Values.db.user }}
+    {{- end }}
+    database.artifact.password=
+    {{- $secretName := .Values.secrets.dbArtifactCredentials.name -}}
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace $secretName) -}}
+    {{- if $secret.data }}
+      {{- $dbPassword := index $secret.data .Values.secrets.dbArtifactCredentials.passwordKey }}
+      {{- $dbPassword }}
+    {{- else -}}
+      {{ .Values.db.password }}
+    {{- end }}
     {{- end }}
 
     # Demo initialization

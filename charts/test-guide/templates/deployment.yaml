@@ -64,63 +64,7 @@ spec:
             timeoutSeconds: 5
             failureThreshold: 5
           env:
-            - name: DB_USER
-              valueFrom:
-                {{- if .Values.useSecretsForCredentials }}
-                secretKeyRef:
-                  name: {{ .Values.secrets.dbCredentials.name }}
-                  key: {{ .Values.secrets.dbCredentials.userKey }}
-                {{- else }}
-                value: {{ .Values.db.user }}
-                {{- end }}
-            - name: DB_PASSWORD
-              valueFrom:
-                {{- if .Values.useSecretsForCredentials }}
-                secretKeyRef:
-                  name: {{ .Values.secrets.dbCredentials.name }}
-                  key: {{ .Values.secrets.dbCredentials.passwordKey }}
-                {{- else }}
-                value: {{ .Values.db.password }}
-                {{- end }}
-            - name: DB_MONITORING_USER
-              valueFrom:
-                {{- if .Values.useSecretsForCredentials }}
-                secretKeyRef:
-                  name: {{ .Values.secrets.dbMonitoringCredentials.name }}
-                  key: {{ .Values.secrets.dbMonitoringCredentials.userKey }}
-                {{- else }}
-                value: {{ .Values.dbMonitoring.user }}
-                {{- end }}
-            - name: DB_MONITORING_PASSWORD
-              valueFrom:
-                {{- if .Values.useSecretsForCredentials }}
-                secretKeyRef:
-                  name: {{ .Values.secrets.dbCredentials.name }}
-                  key: {{ .Values.secrets.dbMonitoringCredentials.passwordKey }}
-                {{- else }}
-                value: {{ .Values.dbMonitoring.password }}
-                {{- end }}
-            - name: DB_ARTIFACT_USER
-              valueFrom:
-                {{- if .Values.useSecretsForCredentials }}
-                secretKeyRef:
-                  name: {{ .Values.secrets.dbArtifactCredentials.name }}
-                  key: {{ .Values.secrets.dbArtifactCredentials.userKey }}
-                {{- else }}
-                value: {{ .Values.dbArtifact.user }}
-                {{- end }}
-            - name: DB_ARTIFACT_PASSWORD
-              valueFrom:
-                {{- if .Values.useSecretsForCredentials }}
-                secretKeyRef:
-                  name: {{ .Values.secrets.dbArtifactCredentials.name }}
-                  key: {{ .Values.secrets.dbArtifactCredentials.passwordKey }}
-                {{- else }}
-                value: {{ .Values.dbArtifact.password }}
-                {{- end }}
-              {{- with .Values.env }}
-              {{- toYaml . | nindent 12 }}
-              {{- end }}
+            {{- toYaml .Values.env | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
