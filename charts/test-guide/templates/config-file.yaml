@@ -22,16 +22,14 @@ stringData:
     database.user=
     {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbCredentials.secretName) -}}
     {{- if $secret.data }}
-      {{- $dbUser := index $secret.data .Values.secrets.dbCredentials.userKey }}
-      {{- $dbUser }}
+      {{index $secret.data .Values.secrets.dbCredentials.userKey }}
     {{- else -}}
       {{ .Values.db.user }}
     {{- end }}
     database.password=
     {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbCredentials.secretName) -}}
     {{- if $secret.data }}
-      {{- $dbPassword := index $secret.data .Values.secrets.dbCredentials.passwordKey }}
-      {{- $dbPassword }}
+      {{- index $secret.data .Values.secrets.dbCredentials.passwordKey }}
     {{- else -}}
       {{ .Values.db.password }}
     {{- end }}
@@ -43,16 +41,14 @@ stringData:
     database.monitoring.user=
     {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbMonitoringCredentials.secretName) -}}
     {{- if $secret.data }}
-      {{- $dbUser := index $secret.data .Values.secrets.dbMonitoringCredentials.userKey }}
-      {{- $dbUser }}
+      {{- index $secret.data .Values.secrets.dbMonitoringCredentials.userKey }}
     {{- else -}}
       {{ .Values.dbMonitoring.user }}
     {{- end }}
     database.monitoring.password=
     {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbMonitoringCredentials.secretName) -}}
     {{- if $secret.data }}
-      {{- $dbPassword := index $secret.data .Values.secrets.dbMonitoringCredentials.passwordKey }}
-      {{- $dbPassword }}
+      {{- index $secret.data .Values.secrets.dbMonitoringCredentials.passwordKey }}
     {{- else -}}
       {{ .Values.dbMonitoring.password }}
     {{- end }}
@@ -65,16 +61,14 @@ stringData:
     database.artifact.user=
     {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbArtifactCredentials.secretName) -}}
     {{- if $secret.data }}
-      {{- $dbUser := index $secret.data .Values.secrets.dbArtifactCredentials.userKey }}
-      {{- $dbUser }}
+      {{- index $secret.data .Values.secrets.dbArtifactCredentials.userKey }}
     {{- else -}}
       {{ .Values.dbArtifact.user }}
     {{- end }}
     database.artifact.password=
     {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbArtifactCredentials.secretName) -}}
     {{- if $secret.data }}
-      {{- $dbPassword := index $secret.data .Values.secrets.dbArtifactCredentials.passwordKey }}
-      {{- $dbPassword }}
+      {{- index $secret.data .Values.secrets.dbArtifactCredentials.passwordKey }}
     {{- else -}}
       {{ .Values.dbArtifact.password }}
     {{- end }}
