@@ -19,23 +19,59 @@ stringData:
     # Database connection
     database.driver={{ .Values.db.driver }}
     database.url={{ .Values.db.url }}
-    database.user={{ .Values.db.user }}
-    database.password={{ .Values.db.password }}
+    database.user=
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbCredentials.secretName) -}}
+    {{- if $secret.data }}
+      {{- (index $secret.data .Values.secrets.dbCredentials.userKey) | b64dec }}
+    {{- else -}}
+      {{ .Values.db.user }}
+    {{- end }}
+    database.password=
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbCredentials.secretName) -}}
+    {{- if $secret.data }}
+      {{- (index $secret.data .Values.secrets.dbCredentials.passwordKey) | b64dec }}
+    {{- else -}}
+      {{ .Values.db.password }}
+    {{- end }}
 
     {{ if .Values.dbMonitoring -}}
     # Monitoring database connection
     database.monitoring.driver={{ .Values.dbMonitoring.driver }}
     database.monitoring.url={{ .Values.dbMonitoring.url }}
-    database.monitoring.user={{ .Values.dbMonitoring.user }}
-    database.monitoring.password={{ .Values.dbMonitoring.password }}
+    database.monitoring.user=
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbMonitoringCredentials.secretName) -}}
+    {{- if $secret.data }}
+      {{- (index $secret.data .Values.secrets.dbMonitoringCredentials.userKey) | b64dec }}
+    {{- else -}}
+      {{ .Values.dbMonitoring.user }}
+    {{- end }}
+    database.monitoring.password=
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbMonitoringCredentials.secretName) -}}
+    {{- if $secret.data }}
+      {{- (index $secret.data .Values.secrets.dbMonitoringCredentials.passwordKey) | b64dec }}
+    {{- else -}}
+      {{ .Values.dbMonitoring.password }}
+    {{- end }}
     {{- end }}
 
     {{ if .Values.dbArtifact -}}
     # Artifact database connection
     database.artifact.driver={{ .Values.dbArtifact.driver }}
     database.artifact.url={{ .Values.dbArtifact.url }}
-    database.artifact.user={{ .Values.dbArtifact.user }}
-    database.artifact.password={{ .Values.dbArtifact.password }}
+    database.artifact.user=
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbArtifactCredentials.secretName) -}}
+    {{- if $secret.data }}
+      {{- (index $secret.data .Values.secrets.dbArtifactCredentials.userKey) | b64dec }}
+    {{- else -}}
+      {{ .Values.dbArtifact.user }}
+    {{- end }}
+    database.artifact.password=
+    {{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.secrets.dbArtifactCredentials.secretName) -}}
+    {{- if $secret.data }}
+      {{- (index $secret.data .Values.secrets.dbArtifactCredentials.passwordKey) | b64dec }}
+    {{- else -}}
+      {{ .Values.dbArtifact.password }}
+    {{- end }}
     {{- end }}
 
     # Demo initialization

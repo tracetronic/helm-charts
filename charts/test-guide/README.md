@@ -32,6 +32,22 @@ To see all configurable options with detailed comments, visit the chart's [value
 $ helm show values tracetronic/test-guide
 ```
 
+### Using secrets as database credentials
+It is possible to use kubernetes secrets to configure the database credentials. Make sure the secret is present in the same namespace and configure the secretName and key names for user or password in [values.yaml](./values.yaml) under the `secrets` section.
+
+#### Example db-credentials secret
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-credentials
+type: Opaque
+data:
+  user: dXNlcm5hbWU=  # base64 encoded 'username'
+  password: cGFzc3dvcmQ=  # base64 encoded 'password'
+
+```
+
 ## Migration
 
 ### To 0.4.0
