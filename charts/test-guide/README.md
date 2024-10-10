@@ -53,8 +53,8 @@ data:
 ### To 0.7.0
 
 This version supports a configurable test.guide application directory which must match the used image. Since test.guide
-provides [UBI9](https://catalog.redhat.com/software/base-images) images we changed the default configuration for the
-following values
+provides [UBI9](https://catalog.redhat.com/software/base-images) images the default configuration for the
+following values have changed.
 
 #### values.yaml
 
