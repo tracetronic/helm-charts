@@ -17,7 +17,7 @@ baseSettings:
   # Default needs to be set to individual value
   uuid: 1
   # parent folder of test.guide workspace
-  tgWorkspace: /home/tg_user/
+  tgWorkspace: /var/testguide/
 
 # Configure admin credentials
 serveradmin:
@@ -44,7 +44,7 @@ secrets:
 db:
   driver: H2
   # If the database is stored apart from the test.guide workspace database persistence must be handled separately.
-  url: jdbc:h2:/home/tg_user/TTS-TM/TT-DB
+  url: jdbc:h2:/var/testguide/TTS-TM/TT-DB
   # Default plain text values if no configured secret is present
   user: ATX
   password: ATX
@@ -53,7 +53,7 @@ db:
 dbMonitoring:
   driver: H2
   # If the database is stored apart from the test.guide workspace database persistence must be handled separately.
-  url: jdbc:h2:/home/tg_user/TTS-TM/TT-DB-Monitoring
+  url: jdbc:h2:/var/testguide/TTS-TM/TT-DB-Monitoring
   # Default plain text values if no configured secret is present
   user: ATX
   password: ATX
@@ -62,7 +62,7 @@ dbMonitoring:
 dbArtifact:
   driver: H2
   # If the database is stored apart from the test.guide workspace database persistence must be handled separately.
-  url: jdbc:h2:/home/tg_user/TTS-TM/TT-Artifact
+  url: jdbc:h2:/var/testguide/TTS-TM/TT-Artifact
   # Default values if no configured secret is present
   user: ATX
   password: ATX
