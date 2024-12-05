@@ -56,9 +56,18 @@ spec:
             timeoutSeconds: 5
             failureThreshold: 5
           readinessProbe:
-            httpGet:
-              path: /api/health/ready
-              port: {{ .Values.service.targetPort }}
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  if curl -s http://localhost:{{ .Values.service.targetPort }}{{ .Values.service.readinessPath | default "/api/health/ready" }}; then
+                    exit 0
+                  elif curl -s http://localhost:{{ .Values.service.targetPort }}/api/health/live; then
+                    exit 0
+                  else
+                    exit 1
+                  fi
             initialDelaySeconds: 30
             periodSeconds: 10
             timeoutSeconds: 5
