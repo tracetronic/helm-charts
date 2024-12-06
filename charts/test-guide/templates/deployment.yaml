@@ -57,7 +57,7 @@ spec:
             failureThreshold: 5
           readinessProbe:
             httpGet:
-              path: /api/health/ready
+              path: {{ .Values.service.readinessPath | default "/api/health/live" }}
               port: {{ .Values.service.targetPort }}
             initialDelaySeconds: 30
             periodSeconds: 10
