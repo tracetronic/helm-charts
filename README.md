@@ -1,7 +1,12 @@
-# tracetronic Helm Charts
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub Release](https://img.shields.io/github/release/tracetronic/helm-charts.svg?label=version)](https://github.com/tracetronic/helm-charts/releases)
-[![CI](https://github.com/tracetronic/helm-charts/actions/workflows/jenkins-ci.yml/badge.svg)](https://github.com/tracetronic/helm-charts/blob/main/.github/workflows/jenkins-ci.yml)
+> [!CAUTION]
+> ⚠️ End‑of‑Life (EOL) – No Further Development
+> 
+> The development of this repository has been discontinued. The final released version will remain available in an archived state for reference purposes only. No updates, bug‑fixes, or new features will be added moving forward.
+> 
+> For personalized assistance, migration advice, or custom implementation guidance, please reach out to our support team (support@tracetronic.com)
+
+# tracetronic Helm Charts
 
 This repository hosts the official **[tracetronic](https://www.tracetronic.com/) Helm Charts** for deploying **tracetronic** products to [Kubernetes](https://kubernetes.io/).
 
