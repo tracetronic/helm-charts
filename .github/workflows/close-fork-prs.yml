@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Close Pull Requests
-        uses: peter-evans/close-fork-pulls@v1
+        uses: peter-evans/close-fork-pulls@v2
         with:
           comment: |
             We do not accept any external pull requests. Auto-closing this pull request.
